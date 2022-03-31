@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Potential Catastrophic JavaScript</title>
+		<style>
+			body {
+				padding: 10px 20px;
+			}
+			.explanation,
+			.strain {
+				font-size: 30px;
+			}
+			.notification {
+				border: 5px solid transparent;
+				font-size: 40px;
+				padding: 10px;
+			}
+			.failure {
+				border-color: red;
+			}
+			.warning {
+				border-color: yellow;
+			}
+			.safe {
+				border-color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Potential Catastrophic JavaScript</h1>
+
+		<div id="app"></div>
+		<div class="explanation">
+			<p>If the strain value goes too high it is <em>dangerous</em></p>
+			<p>10 or greater is catastrophic. A warning is displayed for 8 or greater.</p>
+		</div>
+
+		<script>
+
+			function getNotification(strain) {
+				let className, message;
+				if (strain < 8) {
+					className = 'safe';
+					message = 'Nominal operation';
+				} else if (strain < 10) {
+					className = 'warning';
+					message = 'Strain is approaching failure point';
+				} else {
+					className = 'failure';
+					message = 'Everyone is dead';
+				}
+				return `<div class="notification ${className}">${message}</div>`;
+			}
+
+			const appDomObj = document.getElementById('app');
+			const strain = 6;
+			appDomObj.innerHTML = getNotification(strain) + `<p class="strain">Strain is ${strain}</p>`;
+		</script>
+	</body>
+</html>
