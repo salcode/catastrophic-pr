@@ -7,6 +7,9 @@
 			body {
 				padding: 10px 20px;
 			}
+			.details {
+				font-size: 26px;
+			}
 			.explanation,
 			.strain {
 				font-size: 30px;
@@ -62,12 +65,16 @@
 					className = 'failure';
 					message = 'Everyone is dead';
 				}
-				return `<div class="notification ${className}">${message}</div>`;
+				return `<ul class="details">
+					<li>Heat strain: ${getHeatStrain()}</li>
+					<li>Weight strain: ${getWeightStrain()}</li>
+				</ul>
+				<div class="notification ${className}">${message}</div>`;
 			}
 
 			const appDomObj = document.getElementById('app');
 			const strain = getStrain();
-			appDomObj.innerHTML = getNotification(strain) + `<p class="strain">Strain is ${strain}</p>`;
+			appDomObj.innerHTML = getNotification(strain) + `<p class="strain">Total Strain is ${strain}</p>`;
 		</script>
 	</body>
 </html>
